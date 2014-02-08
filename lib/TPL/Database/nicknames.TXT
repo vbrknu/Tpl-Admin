@@ -1,0 +1,369 @@
+Nadal, Rafael|(ESP) {
+    Rafa,
+    Ralph,
+}
+Djokovic, Novak|(SRB) {
+    Djoko,
+    Nole,
+    Djoker,
+    Dork,
+}
+Ferrer, David|(ESP) {
+    Pics,
+    Daveed,
+    Feru,
+    Ferru,
+}
+Murray, Andy|(GBR) {
+    Muzza,
+    Sir Andrew,
+}
+Del Potro, Juan Martin|(ARG) {
+    Delpo,
+}
+Federer, Roger|(SUI) {
+    Rodge,
+    RFed,
+}
+Berdych, Tomas|(CZE) {
+    TBerd,
+    Birdman,
+}
+Wawrinka, Stanislas|(SUI) {
+    Stan The Man,
+    Stanley,
+    Stan Da Man,
+    Stan Wawrinka,
+    Wawa,
+}
+Gasquet, Richard|(FRA) {
+    Richie,
+    Richmond,
+}
+Tsonga, Jo-Wilfried|(FRA) {
+    Jo-Willy,
+}
+Raonic, Milos|(CAN) {
+    Missile,
+}
+Haas, Tommy|(GER) {
+    Tommy Boy,
+}
+Almagro, Nicolas|(ESP) {
+    Nico,
+}
+Isner, John|(USA) {
+    Jizzner,
+}
+Youzhny, Mikhail|(RUS) {
+    Youz,
+}
+Fognini, Fabio|(ITA) {
+    The Fog,
+    Fogna,
+}
+Nishikori, Kei|(JPN) {
+    Samurai Kei,
+}
+Robredo, Tommy|(ESP) {
+    TRob,
+}
+Simon, Gilles|(FRA)
+Anderson, Kevin|(RSA)
+Janowicz, Jerzy|(POL)
+Kohlschreiber, Philipp|(GER) {
+    Kohly,
+}
+Dimitrov, Grigor|(BUL)
+Gulbis, Ernests|(LAT)
+Seppi, Andreas|(ITA)
+Paire, Benoit|(FRA)
+Melzer, Jurgen|(AUT)
+Lopez, Feliciano|(ESP)
+Tursunov, Dmitry|(RUS)
+Verdasco, Fernando|(ESP)
+Monfils, Gael|(FRA)
+Pospisil, Vasek|(CAN) {
+    Popsicle,
+}
+Dodig, Ivan|(CRO)
+Chardy, Jeremy|(FRA)
+Benneteau, Julien|(FRA) {
+    Benny,
+}
+Tipsarevic, Janko|(SRB) {
+    Tipsy,
+}
+Cilic, Marin|(CRO)
+Granollers, Marcel|(ESP)
+Nieminen, Jarkko|(FIN)
+Mayer, Florian|(GER)
+Berlocq, Carlos|(ARG)
+Monaco, Juan|(ARG)
+Haase, Robin|(NED)
+Stepanek, Radek|(CZE) {
+    Steps,
+}
+Istomin, Denis|(UZB)
+Querrey, Sam|(USA)
+Rosol, Lukas|(CZE)
+Andujar, Pablo|(ESP)
+Sousa, Joao|(POR)
+Mahut, Nicolas|(FRA)
+Tomic, Bernard|(AUS)
+Roger-Vasselin, Edouard|(FRA)
+Davydenko, Nikolay|(RUS)
+Brands, Daniel|(GER)
+Delbonis, Federico|(ARG)
+Zeballos, Horacio|(ARG)
+Dolgopolov, Alexandr|(UKR)
+Bautista Agut, Roberto|(ESP)
+Mannarino, Adrian|(FRA)
+Hewitt, Lleyton|(AUS)
+Matosevic, Marinko|(AUS)
+Garcia-Lopez, Guillermo|(ESP)
+Montanes, Albert|(ESP)
+Carreno Busta, Pablo|(ESP)
+Lu, Yen-Hsun|(TPE)
+Przysiezny, Michal|(POL)
+Kukushkin, Mikhail|(KAZ)
+Ebden, Matthew|(AUS)
+Giraldo, Santiago|(COL)
+Sijsling, Igor|(NED)
+Volandri, Filippo|(ITA)
+Kubot, Lukasz|(POL)
+Sela, Dudi|(ISR)
+Kamke, Tobias|(GER)
+Troicki, Viktor|(SRB)
+Gabashvili, Teymuraz|(RUS)
+Gimeno-Traver, Daniel|(ESP)
+Karlovic, Ivo|(CRO) {
+    Dr Ivo,
+}
+Becker, Benjamin|(GER)
+Hanescu, Victor|(ROU)
+Lacko, Lukas|(SVK)
+Golubev, Andrey|(KAZ)
+Ramos, Albert|(ESP)
+De Schepper, Kenny|(FRA)
+Vesely, Jiri|(CZE)
+Reister, Julian|(GER)
+Baghdatis, Marcos|(CYP) {
+    Baggy,
+}
+Bogomolov Jr., Alex|(RUS)
+Smyczek, Tim|(USA)
+Devvarman, Somdev|(IND)
+Gonzalez, Alejandro|(COL)
+Russell, Michael|(USA)
+Nedovyesov, Oleksandr|(KAZ)
+Mayer, Leonardo|(ARG)
+Bedene, Aljaz|(SLO)
+Young, Donald|(USA)
+Klahn, Bradley|(USA)
+Stakhovsky, Sergiy|(UKR) {
+    Staky,
+    Stakhy,
+}
+Falla, Alejandro|(COL)
+Harrison, Ryan|(USA)
+Huta Galung, Jesse|(NED)
+Sock, Jack|(USA)
+Soeda, Go|(JPN)
+Kavcic, Blaz|(SLO)
+Llodra, Michael|(FRA)
+Hajek, Jan|(CZE)
+Struff, Jan-Lennard|(GER)
+Klizan, Martin|(SVK)
+Lorenzi, Paolo|(ITA)
+Goffin, David|(BEL)
+Brown, Dustin|(GER)
+Haider-Maurer, Andreas|(AUT)
+Donskoy, Evgeny|(RUS)
+Kudla, Denis|(USA)
+Robert, Stephane|(FRA)
+Lajovic, Dusan|(SRB)
+Schwartzman, Diego Sebastian|(ARG)
+Pella, Guido|(ARG)
+Ungur, Adrian|(ROU)
+Gicquel, Marc|(FRA)
+Zemlja, Grega|(SLO)
+Dancevic, Frank|(CAN)
+Bagnis, Facundo|(ARG)
+Arguello, Facundo|(ARG)
+Bellucci, Thomaz|(BRA)
+Riba, Pere|(ESP)
+Ram, Rajeev|(USA)
+Martin, Andrej|(SVK)
+Mathieu, Paul-Henri|(FRA)
+Williams, Rhyne|(USA)
+Berankis, Ricardas|(LTU)
+Dutra Silva, Rogerio|(BRA)
+Alund, Martin|(ARG)
+Kuznetsov, Andrey|(RUS)
+Malisse, Xavier|(BEL)
+Duckworth, James|(AUS)
+Rufin, Guillaume|(FRA)
+Odesnik, Wayne|(USA)
+Thiem, Dominic|(AUT)
+Souza, Joao|(BRA)
+Polansky, Peter|(CAN)
+Kuznetsov, Alex|(USA)
+Berrer, Michael|(GER)
+Estrella Burgos, Victor|(DOM)
+Andreozzi, Guido|(ARG)
+de Bakker, Thiemo|(NED)
+Copil, Marius|(ROU)
+Bemelmans, Ruben|(BEL)
+Levine, Jesse|(CAN)
+Evans, Daniel|(GBR)
+Herbert, Pierre-Hugues|(FRA)
+Starace, Potito|(ITA)
+Blake, James|(USA)
+Capdeville, Paul|(CHI)
+Ito, Tatsuma|(JPN)
+Johnson, Steve|(USA)
+Gonzalez, Maximo|(ARG)
+Clezar, Guilherme|(BRA)
+Bachinger, Matthias|(GER)
+Viola, Matteo|(ITA)
+Ward, James|(GBR)
+Gojowczyk, Peter|(GER)
+Cecchinato, Marco|(ITA)
+Darcis, Steve|(BEL)
+Marchenko, Illya|(UKR)
+Ramirez Hidalgo, Ruben|(ESP)
+Stebe, Cedrik-Marcel|(GER)
+Jaziri, Malek|(TUN)
+Albot, Radu|(MDA)
+Sugita, Yuichi|(JPN)
+De Voest, Rik|(RSA)
+Groth, Samuel|(AUS)
+Chiudinelli, Marco|(SUI)
+Wang, Jimmy|(TPE)
+Elias, Gastao|(POR)
+Zverev, Mischa|(GER)
+Guez, David|(FRA)
+Kravchuk, Konstantin|(RUS)
+Reynolds, Bobby|(USA)
+Fabbiano, Thomas|(ITA)
+Fucsovics, Marton|(HUN)
+Kyrgios, Nick|(AUS)
+Sandgren, Tennys|(USA)
+Rola, Blaz|(SLO)
+Ilhan, Marsel|(TUR)
+Beck, Andreas|(GER)
+Dzumhur, Damir|(BIH)
+Cipolla, Flavio|(ITA)
+Weintraub, Amir|(ISR)
+Millman, John|(AUS)
+Olivo, Renzo|(ARG)
+Fischer, Martin|(AUT)
+Teixeira, Maxime|(FRA)
+Munoz-De La Nava, Daniel|(ESP)
+Bhambri, Yuki|(IND)
+Mesaros, Kristijan|(CRO)
+Gombos, Norbert|(SVK)
+Safwat, Mohamed|(EGY)
+Desein, Niels|(BEL)
+Sousa, Pedro|(POR)
+Rochus, Olivier|(BEL)
+Melzer, Gerald|(AUT)
+Mertl, Jan|(CZE)
+Pouille, Lucas|(FRA)
+Moriya, Hiroki|(JPN)
+Petzschner, Philipp|(GER)
+Menendez-Maceiras, Adrian|(ESP)
+Wu, Di|(CHN)
+Dustov, Farrukh|(UZB)
+Greul, Simon|(GER)
+Schoorel, Thomas|(NED)
+Arnaboldi, Andrea|(ITA)
+Pospisil, Jaroslav|(CZE)
+Ginepri, Robby|(USA)
+Souto, David|(VEN)
+Ghem, Andre|(BRA)
+Veic, Antonio|(CRO)
+Serra, Florent|(FRA)
+Hernych, Jan|(CZE)
+Cuevas, Pablo|(URU)
+Smith, John-Patrick|(AUS)
+Granollers, Gerard|(ESP)
+Mecir, Miloslav|(SVK)
+Reid, Matt|(AUS)
+Samper-Montana, Jordi|(ESP)
+Krajinovic, Filip|(SRB)
+Jones, Greg|(AUS)
+Burquier, Gregoire|(FRA)
+Nalbandian, David|(ARG)
+Di Mauro, Alessio|(ITA)
+Crivoi, Victor|(ROU)
+Giustino, Lorenzo|(ITA)
+Diez, Steven|(CAN)
+Velotti, Agustin|(ARG)
+Bozoljac, Ilija|(SRB)
+Olaso, Guillermo|(ESP)
+Westerhof, Boy|(NED)
+Gigounon, Germain|(BEL)
+Daniel, Taro|(JPN)
+Checa-Calvo, Jose|(ESP)
+Krajicek, Austin|(USA)
+Puetz, Tim|(GER)
+McGee, James|(IRL)
+Salamanca, Carlos|(COL)
+Laaksonen, Henri|(SUI)
+Bolelli, Simone|(ITA)
+Hocevar, Ricardo|(BRA)
+Pavic, Ante|(CRO)
+Basic, Mirza|(BIH)
+Michon, Axel|(FRA)
+Cox, Daniel|(GBR)
+Olivetti, Albano|(FRA)
+Ouahab, Lamine|(ALG)
+Gerasimov, Egor|(BLR)
+Zhang, Ze|(CHN)
+Angelinos, Theodoros|(GRE)
+Barton, Matthew|(AUS)
+Coppejans, Kimmer|(BEL)
+Collarini, Andrea|(ARG)
+Grigelis, Laurynas|(LTU)
+Molteni, Andres|(ARG)
+Rudnev, Valery|(RUS)
+Machado, Rui|(POR)
+Balleret, Benjamin|(MON)
+Huang, Liang-Chi|(TPE)
+Mitchell, Benjamin|(AUS)
+Peliwo, Filip|(CAN)
+Carballes Baena, Roberto|(ESP)
+Millot, Vincent|(FRA)
+Kudryavtsev, Alexander|(RUS)
+Lopez-Perez, Enrique|(ESP)
+Knittel, Bastian|(GER)
+Androic, Toni|(CRO)
+Authom, Maxime|(BEL)
+Trungelliti, Marco|(ARG)
+Monteiro, Thiago|(BRA)
+Yang, Tsung-Hua|(TPE)
+Londero, Juan Ignacio|(ARG)
+Giannessi, Alessandro|(ITA)
+Naso, Gianluca|(ITA)
+Vagnozzi, Simone|(ITA)
+Uchiyama, Yasutaka|(JPN)
+Podlipnik-Castillo, Hans|(CHI)
+Kondo, Hiroki|(JPN)
+Mektic, Nikola|(CRO)
+Semjan, Marek|(SVK)
+Molchanov, Denys|(UKR)
+Panfil, Grzegorz|(POL)
+Sikora, Adrian|(SVK)
+Statham, Jose (Rubin)|(NZL)
+Sekiguchi, Shuichi|(JPN)
+Karatsev, Aslan|(RUS)
+Chen, Ti|(TPE)
+Marie, Jules|(FRA)
+Wang, Tak Khunn|(FRA)
+Mertens, Yannick|(BEL)
+Reuter, Yannik|(BEL)
+Lama, Gonzalo|(CHI)
+Corrie, Edward|(GBR)
+Hernandez, Jose|(DOM)
