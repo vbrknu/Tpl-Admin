@@ -313,9 +313,6 @@ sub process_picks {
 	open OUTPUT, '>>', $output_file;
 	my ( @codedPicks, @failedPicks);
 	my $similar_player_names;
-	#if ( $name =~ /romeo/i ) {
-	#	dd ($matchPicks);
-	#}
 	
 	foreach(@$matchPicks){ 		
 		next unless /\bvs\b/; 	
