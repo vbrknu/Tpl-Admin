@@ -221,6 +221,7 @@ sub check_with_oop {
 	my $theoop = shift @_;
 	my $players = shift @_;
 	my ( $name, $date, $time, $post_number, $nr_of_picks, @picks, @oop_matches );
+	
 	foreach my $record (@$players) {
 		foreach my $key ( keys %{$record} ) {
 			$name = $key;
@@ -228,10 +229,12 @@ sub check_with_oop {
 			$time = $record->{$key}->{time_of_post};
 			$post_number = $record->{$key}->{thread_post_nr};
 			$nr_of_picks = keys ${$record}{$key}{picks};
+			
 			foreach my $pick (keys ${$record}{$key}{picks}){
 				for (keys ${$record}{$key}{picks}[$pick]) {
 					my $current_pick = $_;
 					my $first_match  = firstidx { $_ eq $current_pick } @$theoop;
+					
 					if ( $first_match >= 0 ) {
 						$picks[$pick] = join ' ', $_, $record->{$key}->{picks}[$pick]{$_};
 						$oop_matches[$pick] = $first_match;
