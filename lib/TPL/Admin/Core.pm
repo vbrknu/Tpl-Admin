@@ -48,7 +48,7 @@ our $last_post_checked;
 our $theoop;
 our $output_file = '../../../coded_picks.txt';
 my $high_pass = 0.8;
-my $low_pass  = 0.7;
+my $low_pass  = 0.75;
 
 # This sets up the header of the output, containing all the column names ... 
 sub init {
