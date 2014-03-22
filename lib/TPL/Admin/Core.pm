@@ -602,7 +602,7 @@ sub parse_webpage {
 		#Getting the post
 		my $userId = 0;
 		
-		if ( $postr =~ /seffina/ and $post =~ /___!([[:print:]]+)!___/) {
+		if ( ($postr =~ /seffina/ or $postr =~ /Li Ching Yuen/) and $post =~ /___!([[:print:]]+)!___/) {
 			$postr = $1;
 		}
 		
