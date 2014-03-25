@@ -16,7 +16,7 @@ use TPL::Database::DB_work qw ( db_handle
 				get_nicknames 
 				);
 
-use String::KeyboardDistance qw( qwerty_keyboard_distance_match );
+use Text::Levenshtein::XS qw(distance);
 use TPL::RegEx::Regexp qw( $match_pick
 			   $picked_oop_match
 			   $no_quotes
@@ -47,9 +47,9 @@ $verbose = 1;
 our $last_post_checked;
 our $theoop;
 our $output_file = '../../../coded_picks.txt';
-my $high_pass 	= 0.85;
-my $mid_pass 	= 0.8;	
-my $low_pass  	= 0.78;
+my $high_pass 	= 1;
+my $mid_pass 	= 2;	
+my $low_pass  	= 3;
 
 # This sets up the header of the output, containing all the column names ... 
 sub init {
@@ -306,7 +306,7 @@ sub nickname_spellcheck {
 	my ( $playerPicked, $nicknames )= @_;
 	
 	foreach (@$nicknames) {
-		if ( qwerty_keyboard_distance_match ($playerPicked, $_) > $mid_pass ) {
+		if ( distance ($playerPicked, $_) < $mid_pass ) {
 			return 1;
 		}
 	}	
@@ -323,7 +323,7 @@ sub process_picks {
 	foreach(@$matchPicks){ 		
 		next unless /\bvs\b/; 	
 		my ( $thisPick, $nbOfSets, $initials_first, $initials_second, $first_oop_format, $second_oop_format);
-		
+
 		if ( /$match_pick/ ){
 		
 		my ($firstI, $first, $first_country, $secondI, $second, $second_country, $playerPicked) = ($1, $2, $3, $4, $5, $6, $7);
@@ -339,7 +339,7 @@ sub process_picks {
 		$first_oop_format	 = "$firstI $first";
 		$second_oop_format	 = "$secondI $second";
 
-		if ( qwerty_keyboard_distance_match($first, $second) > $low_pass ) {
+		if ( distance($first, $second) < $low_pass ) {
 			$similar_player_names = 1;
 		} else {
 			$similar_player_names = 0;
@@ -352,16 +352,16 @@ sub process_picks {
 		elsif ( $second =~ /$playerPicked/xi or $initials_second =~ /$playerPicked/i or $second_oop_format =~ /$playerPicked/i ){  
 			$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 		}
-		elsif ( $similar_player_names == 0 and qwerty_keyboard_distance_match($first, $playerPicked) > $mid_pass ) {
+		elsif ( $similar_player_names == 0 and distance($first, $playerPicked) < $mid_pass ) {
 			$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 		}
-		elsif ( $similar_player_names == 0 and ( qwerty_keyboard_distance_match($second, $playerPicked) > $mid_pass )) {
+		elsif ( $similar_player_names == 0 and ( distance($second, $playerPicked) < $mid_pass )) {
 			$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 		}
-		elsif ( $similar_player_names == 0 and qwerty_keyboard_distance_match( $first_oop_format, $playerPicked) > $mid_pass ) {
+		elsif ( $similar_player_names == 0 and distance( $first_oop_format, $playerPicked) < $mid_pass ) {
 			$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 		}
-		elsif ( $similar_player_names == 0 and qwerty_keyboard_distance_match( $second_oop_format, $playerPicked) > $mid_pass ) {
+		elsif ( $similar_player_names == 0 and distance( $second_oop_format, $playerPicked) < $mid_pass ) {
 			$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 		}
 		elsif	( defined $first ) {
@@ -371,62 +371,63 @@ sub process_picks {
 			if ( (defined ${$player_data}{full_name}) and ( ( ${$player_data}{full_name} =~ /$playerPicked/i ))) {	
 				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 			}
-			elsif ((defined ${$player_data}{full_name}) and ( $similar_player_names == 0 )
-				and qwerty_keyboard_distance_match ( ${$player_data}{full_name}, $playerPicked ) > $mid_pass ) {
+			elsif ((defined ${$player_data}{full_name}) and (( $similar_player_names == 0 )
+				and distance ( ${$player_data}{full_name}, $playerPicked ) < $mid_pass )) {
 				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 			}
 			elsif ( ( defined ${$player_data}{first_name} ) and ( ( ${$player_data}{first_name} =~ /$playerPicked/i ))) {
 				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 			}
-			elsif ( (defined ${$player_data}{first_name}) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{first_name}, $playerPicked ) > $mid_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{middle_name} ) and ( ${$player_data}{middle_name} =~ /$playerPicked/i )){
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( (defined ${$player_data}{middle_name}) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{middle_name}, $playerPicked ) > $high_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_no_space} ) and ( ${$player_data}{two_namer_no_space} =~ /$playerPicked/i )) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_no_space} ) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_no_space}, $playerPicked ) > $mid_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_space} ) and ( ${$player_data}{two_namer_space} =~ /$playerPicked/i )) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_space} ) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_space}, $playerPicked ) > $mid_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{last_name_split1} ) and ( ${$player_data}{last_name_split1} =~ /$playerPicked/i )) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{last_name_split1} ) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{last_name_split1}, $playerPicked ) > $mid_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{last_name_split2} ) and ( ${$player_data}{last_name_split2} =~ /$playerPicked/i )) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{last_name_split2} ) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{last_name_split2}, $playerPicked ) > $mid_pass ) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_dash}) and ( ${$player_data}{two_namer_dash} =~ /$playerPicked/i )) {
-				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
-			}
-			elsif ( ( defined ${$player_data}{two_namer_dash}) and ( $similar_player_names == 0 )
-				 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_dash}, $playerPicked ) > $mid_pass ) {
+			elsif ( (defined ${$player_data}{first_name}) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{first_name}, $playerPicked ) < $mid_pass )) {
 				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 			}
 			elsif ( ( /$playerPicked/i ~~ @$nicknames ) or ( nickname_spellcheck ($playerPicked, $nicknames ))) {
 				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
 			} 
+			elsif ( ( defined ${$player_data}{middle_name} ) and ( ${$player_data}{middle_name} =~ /$playerPicked/i )){
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( (defined ${$player_data}{middle_name}) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{middle_name}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_no_space} ) and ( ${$player_data}{two_namer_no_space} =~ /$playerPicked/i )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_no_space} ) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{two_namer_no_space}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_space} ) and ( ${$player_data}{two_namer_space} =~ /$playerPicked/i )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_space} ) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{two_namer_space}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{last_name_split1} ) and ( ${$player_data}{last_name_split1} =~ /$playerPicked/i )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{last_name_split1} ) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{last_name_split1}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{last_name_split2} ) and ( ${$player_data}{last_name_split2} =~ /$playerPicked/i )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{last_name_split2} ) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{last_name_split2}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_dash}) and ( ${$player_data}{two_namer_dash} =~ /$playerPicked/i )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			elsif ( ( defined ${$player_data}{two_namer_dash}) and (( $similar_player_names == 0 )
+				 and distance ( ${$player_data}{two_namer_dash}, $playerPicked ) < $mid_pass )) {
+				$thisPick = process_first_pos($bestOf5, $nbOfSets, $playerPicked);
+			}
+			
 			unless ( defined $thisPick ) {
 				if ( ( defined $second ) ) {
 					my $player_data = lookup_player_alts($secondI, $second, $second_country );
@@ -434,62 +435,63 @@ sub process_picks {
 					if ( (defined ${$player_data}{full_name}) and ( ( ${$player_data}{full_name} =~ /$playerPicked/i ))) {
 						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 					}
-					elsif ( (defined ${$player_data}{full_name}) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{full_name}, $playerPicked ) > $mid_pass ) {
+					elsif ( (defined ${$player_data}{full_name}) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{full_name}, $playerPicked ) < $mid_pass )) {
 						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 					}
 					elsif ( ( defined ${$player_data}{first_name} ) and ( ( ${$player_data}{first_name} =~ /$playerPicked/i ))) {
 						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 					}
-					elsif ( ( defined ${$player_data}{first_name} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{first_name}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{middle_name} ) and ( ${$player_data}{middle_name} =~ /$playerPicked/i )){
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{middle_name} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{middle_name}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{two_namer_no_space} ) and ( ${$player_data}{two_namer_no_space} =~ /$playerPicked/i )) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif (( defined ${$player_data}{two_namer_no_space} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_no_space}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{two_namer_space} ) and ( ${$player_data}{two_namer_space} =~ /$playerPicked/i )) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{two_namer_space} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_space}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{last_name_split1} ) and ( ${$player_data}{last_name_split1} =~ /$playerPicked/i )) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{last_name_split1} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{last_name_split1}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{last_name_split2} ) and ( ${$player_data}{last_name_split2} =~ /$playerPicked/i )) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{last_name_split2} ) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{last_name_split2}, $playerPicked ) > $mid_pass ) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{two_namer_dash}) and ( ${$player_data}{two_namer_dash} =~ /$playerPicked/i )) {
-						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
-					}
-					elsif ( ( defined ${$player_data}{two_namer_dash}) and ( $similar_player_names == 0 )
-						 and qwerty_keyboard_distance_match ( ${$player_data}{two_namer_dash}, $playerPicked ) > $mid_pass ) {
+					elsif ( ( defined ${$player_data}{first_name} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{first_name}, $playerPicked ) < $mid_pass )) {
 						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 					}
 					elsif ( ( /$playerPicked/i ~~ @$nicknames ) or ( nickname_spellcheck ($playerPicked, $nicknames ))) {
 						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
 					} 
+					elsif ( ( defined ${$player_data}{middle_name} ) and ( ${$player_data}{middle_name} =~ /$playerPicked/i )){
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{middle_name} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{middle_name}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{two_namer_no_space} ) and ( ${$player_data}{two_namer_no_space} =~ /$playerPicked/i )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif (( defined ${$player_data}{two_namer_no_space} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{two_namer_no_space}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{two_namer_space} ) and ( ${$player_data}{two_namer_space} =~ /$playerPicked/i )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{two_namer_space} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{two_namer_space}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{last_name_split1} ) and ( ${$player_data}{last_name_split1} =~ /$playerPicked/i )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{last_name_split1} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{last_name_split1}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{last_name_split2} ) and ( ${$player_data}{last_name_split2} =~ /$playerPicked/i )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{last_name_split2} ) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{last_name_split2}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{two_namer_dash}) and ( ${$player_data}{two_namer_dash} =~ /$playerPicked/i )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					elsif ( ( defined ${$player_data}{two_namer_dash}) and (( $similar_player_names == 0 )
+						 and distance ( ${$player_data}{two_namer_dash}, $playerPicked ) < $mid_pass )) {
+						$thisPick = process_second_pos($bestOf5, $nbOfSets, $playerPicked);
+					}
+					
 					else { $thisPick = "?";
 						llog "Bad player name:$_";
 					}
